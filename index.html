@@ -51,9 +51,17 @@ function displayAnimals(){
                       var newDiv = $("<div>").addClass("animal-output");
                       $(".container").append(newDiv);
 
-                    var rating = response.data[i].rating;
+                    var rating = response.data[i].rating.toUpperCase();
                     var pOne = $("<p>").text("Rating: " + rating);
                     newDiv.append(pOne);
+
+                    var imageUrl = response.data[i].images.original.url;
+                    var image = $("<img>").attr("src", imageUrl);
+                    newDiv.append(image);
+                     // creating a variable to store the image url of the gif
+
+
+
                 
                       console.log(response.data[i].rating);
 
