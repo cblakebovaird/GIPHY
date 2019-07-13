@@ -55,14 +55,10 @@ function displayAnimals(){
                     var pOne = $("<p>").text("Rating: " + rating);
                     newDiv.append(pOne);
 
-                    var imageUrl = response.data[i].images.original.url;
-                    var image = $("<img>").attr("src", imageUrl);
+                    var imageUrl = response.data[i].images.original_still.url;
+                    var image = $("<img>").addClass("animate").attr("src", imageUrl);
                     newDiv.append(image);
-                     // creating a variable to store the image url of the gif
 
-
-
-                
                       console.log(response.data[i].rating);
 
                   }
@@ -106,10 +102,14 @@ $("#add-animal").on("click", function(event) {
     // The renderButtons function is called, rendering the list of animal buttons
     displayButtons();
   });
+
+  
+
+  
 // console.log(topics);
 $(document).on("click", ".animal-btn", displayAnimals);
 
-
+// when trying to get the pictures to animate, use booleans
 
 displayButtons();
  </script>  
