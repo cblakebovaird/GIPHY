@@ -37,7 +37,10 @@ var animals = [
 //  creating a function to re-render the HTML to display the appropriate content
 function displayAnimals(){
     var animal = $(this).attr("data-name");
-    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx&q=" + animal + "&limit=10&offset=0&rating=G&lang=en";
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx&q=" + animal + "&limit=10&offset=0&lang=en";
+
+    
+   
 
     // Creating an AJAX call for the specific animal being clicked
     $.ajax({
@@ -50,17 +53,21 @@ function displayAnimals(){
                   for (var i = 0; i < response.data.length; i++){
                       var newDiv = $("<div>").addClass("animal-output");
                       $(".container").append(newDiv);
+                
 
                     var rating = response.data[i].rating.toUpperCase();
                     var pOne = $("<p>").text("Rating: " + rating);
                     newDiv.append(pOne);
 
                     var imageUrl = response.data[i].images.original_still.url;
-                    var image = $("<img>").addClass("animate").attr("src", imageUrl);
+                    var image = $("<img>").attr("src", imageUrl).addClass("gif");
                     newDiv.append(image);
 
                       console.log(response.data[i].rating);
 
+                var dataAnimate = response.data[i].images.original.url;
+
+                
                   }
                   
                 
@@ -110,8 +117,32 @@ $("#add-animal").on("click", function(event) {
 $(document).on("click", ".animal-btn", displayAnimals);
 
 // when trying to get the pictures to animate, use booleans
+$(".gif").on("click", function() {
+     
+//    maybe try creating a new function with ajax call and calling it here when clicked
+
+      var state = $(this).attr("data-state");
+      var animateImg = $(this).attr("data-animate");
+      var stillImg = $(this).attr("data-still");
+      if ( state === "still") {
+
+        $(this).attr("src", animateImg);
+        $(this).attr("data-state","animate");
+      }
+      else {
+        $(this).attr("src", stillImg);
+        $(this).attr("data-state","still");
+      }
+      
+
+      // ==============================================
+
+      // STEP FOUR: open the file in the browser and click on the images.
+      // Then click again to pause.
+    });
 
 displayButtons();
+
  </script>  
 
 </body>
