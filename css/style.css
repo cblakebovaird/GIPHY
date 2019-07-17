@@ -1,6 +1,36 @@
 #buttons-view,
     div,
     form,
-    input {
+    input
+    .animal-btn
+    #add-animal,
+    #animal-form  {
       margin: 10px;
     }
+
+    .animal-btn,
+    #add-animal {
+      margin: 10px;
+      background-color: teal;
+      color: white;
+      border-radius: 5px;
+
+
+  }
+
+  #add-animal,
+  #animal-form {
+    float: right;
+  }
+  #animal-input{
+    float: center;
+  }
+  .animal-output{
+    float: left;
+  }
+ 
+
+  #add-animal {
+    margin: 20px;
+    margin-right: px;
+  }

@@ -1,17 +1,40 @@
-// Creating a variable to hold the array 
+
+     // Creating a variable to hold the array 
 var animals = [
     "Bear", "Dolphin", "Cat", "Dog", "Bird", "Whale", "Unicorn", "Swan", "Wolf", "Parrot"];
 //  creating a function to re-render the HTML to display the appropriate content
 function displayAnimals(){
     var animal = $(this).attr("data-name");
-    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx" + animal;
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx&q=" + animal + "&limit=10&offset=0&lang=en";
+
+    
+   
 
     // Creating an AJAX call for the specific animal being clicked
     $.ajax({
         url : queryUrl,
         method: "GET"
     }).then(function(response) {
+        $(".animal-output").remove();
+                
+                  console.log(response);
+                  for (var i = 0; i < response.data.length; i++){
+                      var newDiv = $("<div>").addClass("animal-output");
+                      $(".container").append(newDiv);
+                
 
+                    var rating = response.data[i].rating.toUpperCase();
+                    var pOne = $("<p>").text("Rating: " + rating);
+                    newDiv.append(pOne);
+
+                    var imageUrl = response.data[i].images.fixed_height_small_still.url;
+                    var image = $("<img>").attr("src", imageUrl).addClass("gif");
+                    newDiv.append(image);
+
+                      console.log(response.data[i].rating);
+                  }
+                  
+                
     });
 
 }
@@ -50,5 +73,33 @@ $("#add-animal").on("click", function(event) {
     // The renderButtons function is called, rendering the list of animal buttons
     displayButtons();
   });
+
+  
+
+  
 // console.log(topics);
+$(document).on("click", ".animal-btn", displayAnimals);
+
+// when trying to get the pictures to animate, use booleans
+$(".gif").on("click", function() {
+     
+//    maybe try creating a new function with ajax call and calling it here when clicked
+
+      var state = $(this).attr("data-state");
+      var dataAnimate = response.data[i].images.fixed_height_small.url;
+      var dataStill = response.data[i].images.fixed_height_small_still.url;
+      if ( state === "still") {
+
+        $(this).attr("src", $(this), dataAnimate);
+        $(this).attr("data-state","animate");
+      }
+      else {
+        $(this).attr("src", $(this), dataStill);
+        $(this).attr("data-state","still");
+      }
+    
+    });
+
 displayButtons();
+
+ 

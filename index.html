@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GIPHY</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylsheet" type="text/css" href="/GIPHY/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  
 </head>
 <body>
 
@@ -16,11 +17,11 @@
         <div id="buttons-view"></div>
 
     <form id="animal-form">
-        <label for="animal-input"></label>
+        <label for="animal-input">Add an animal</label>
         <input type="text" id="animal-input">
         <br>
 
-        <input id="add-animal" type="submit" value="Search">
+        <input id="add-animal" type="submit" value="Submit">
     </form>
 
     </div>
@@ -30,120 +31,8 @@
 <!-- ******************** JQUERY **************************** -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- ******************** JAVASCRIPT **************************** -->
- <script>
-     // Creating a variable to hold the array 
-var animals = [
-    "Bear", "Dolphin", "Cat", "Dog", "Bird", "Whale", "Unicorn", "Swan", "Wolf", "Parrot"];
-//  creating a function to re-render the HTML to display the appropriate content
-function displayAnimals(){
-    var animal = $(this).attr("data-name");
-    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx&q=" + animal + "&limit=10&offset=0&lang=en";
+ <script src="javascript/game.js"></script>
 
-    
-   
-
-    // Creating an AJAX call for the specific animal being clicked
-    $.ajax({
-        url : queryUrl,
-        method: "GET"
-    }).then(function(response) {
-        $(".animal-output").remove();
-                
-                  console.log(response);
-                  for (var i = 0; i < response.data.length; i++){
-                      var newDiv = $("<div>").addClass("animal-output");
-                      $(".container").append(newDiv);
-                
-
-                    var rating = response.data[i].rating.toUpperCase();
-                    var pOne = $("<p>").text("Rating: " + rating);
-                    newDiv.append(pOne);
-
-                    var imageUrl = response.data[i].images.original_still.url;
-                    var image = $("<img>").attr("src", imageUrl).addClass("gif");
-                    newDiv.append(image);
-
-                      console.log(response.data[i].rating);
-
-                var dataAnimate = response.data[i].images.original.url;
-
-                
-                  }
-                  
-                
-    });
-
-}
-
-// function to display buttons
-function displayButtons () {
-    // deletes buttons before adding new buttons so that it doesnt repeat buttons
-    $("#buttons-view").empty();
-
-    // Looping through the topics array
-    for (var i = 0; i < animals.length; i++) {
-        var a = $("<button>");
-        a.addClass("animal-btn");
-        a.attr("data-name", animals[i]);
-        a.text(animals[i]);
-        $("#buttons-view").append(a);
-        console.log(animals[i]);
-    }
-}
-$("#add-animal").on("click", function(event) {
-    // event.preventDefault() prevents submit button from trying to send a form.
-    // Using a submit button instead of a regular button allows the user to hit
-    // "Enter" instead of clicking the button if desired
-    event.preventDefault();
-
-    // Write code to grab the text the user types into the input field
-    // Write code to add the new animal into the movies array
-    var newAnimal = $("#animal-input").val();
-    animals.push(newAnimal);
-    console.log(animals);
-
-    // Clears the text field after creating the new button
-    $("#animal-input").val("");
-
-
-    // The renderButtons function is called, rendering the list of animal buttons
-    displayButtons();
-  });
-
-  
-
-  
-// console.log(topics);
-$(document).on("click", ".animal-btn", displayAnimals);
-
-// when trying to get the pictures to animate, use booleans
-$(".gif").on("click", function() {
-     
-//    maybe try creating a new function with ajax call and calling it here when clicked
-
-      var state = $(this).attr("data-state");
-      var animateImg = $(this).attr("data-animate");
-      var stillImg = $(this).attr("data-still");
-      if ( state === "still") {
-
-        $(this).attr("src", animateImg);
-        $(this).attr("data-state","animate");
-      }
-      else {
-        $(this).attr("src", stillImg);
-        $(this).attr("data-state","still");
-      }
-      
-
-      // ==============================================
-
-      // STEP FOUR: open the file in the browser and click on the images.
-      // Then click again to pause.
-    });
-
-displayButtons();
-
- </script>  
 
 </body>
 </html>
