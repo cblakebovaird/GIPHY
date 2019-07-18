@@ -25,7 +25,7 @@ function displayAnimals(){
                     var pOne = $("<h3>").text("Rating: " + rating);
                     gifDiv.append(pOne);
                     // Retrieve Static Image from the API
-                    var staticImage = response.data[i].images.fixed_height_small_still.url;
+                    // var staticImage = response.data[i].images.fixed_height_small_still.url;
                     // Retreive Animated Image from the API
                    var animateImage = response.data[i].images.fixed_height_small.url;
                     // Create a div to show the gifs
@@ -38,9 +38,9 @@ function displayAnimals(){
 
                   showImage.attr("src", animateImage);
                   showImage.addClass("gif");
-                  showImage.attr("data-state", "still");
-                  showImage.attr("data-still", staticImage);
-                  showImage.attr("data-animate", animateImage);
+                  // showImage.attr("data-state", "still");
+                  // showImage.attr("data-still", staticImage);
+                  // showImage.attr("data-animate", animateImage);
 
                    }
     });
@@ -87,23 +87,27 @@ $(document).on("click", ".animal-btn", displayAnimals);
 
 displayButtons();
 
-$(document).on("clicl", ".gif", pausePlayGifs);
+$(document).on("click", ".gif", pausePlayGifs);
 // when trying to get the pictures to animate, use booleans
  function pausePlayGifs() {
      
 //    maybe try creating a new function with ajax call and calling it here when clicked
 
       var state = $(this).attr("data-state");
+      var animate = response.data[i].images.fixed_height_small.url;
+      var still = response.data[i].images.fixed_height_small_still.url;
       
       if (state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("src", $(this).attr(animate));
         $(this).attr("data-state", "animate");
       } else {
-        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("src", $(this).attr(still));
         $(this).attr("data-state", "still");
       }
       
     }
+
+    displayButtons();
   
 
 
