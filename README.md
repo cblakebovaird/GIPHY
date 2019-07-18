@@ -1,3 +1,3 @@
 # GIPHY
 
-This project uses the GIPHY API and allows the user to search for a specific topic and populate 
+This is an Animal Giphy Generator so that the user may type in any animal they choose, and then a button created. Upon clicking the button(s), 10 gifs pertaining to the selected animal will be generated on the screen.
