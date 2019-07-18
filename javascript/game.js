@@ -22,7 +22,7 @@ function displayAnimals(){
 
                     var rating = response.data[i].rating.toUpperCase();
 
-                    var pOne = $("<p>").text("Rating: " + rating);
+                    var pOne = $("<h3>").text("Rating: " + rating);
                     gifDiv.append(pOne);
                     // Retrieve Static Image from the API
                     var staticImage = response.data[i].images.fixed_height_small_still.url;
@@ -36,7 +36,7 @@ function displayAnimals(){
 
                   console.log(response.data[i].rating);
 
-                  showImage.attr("src", staticImage);
+                  showImage.attr("src", animateImage);
                   showImage.addClass("gif");
                   showImage.attr("data-state", "still");
                   showImage.attr("data-still", staticImage);
