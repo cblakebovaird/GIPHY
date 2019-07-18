@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,24 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GIPHY</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   
 </head>
 <body>
 
     <div class="container">
+        <div class="wrapper">
+        <div class="row">
+            <div class= "col-lg-9">
+                <h1>Animal Giphy Generator</h1>
+            </div>
 
 <!-- This is where the buttons will display -->
         <div id="buttons-view"></div>
 
     <form id="animal-form">
-        <label for="animal-input">Add an animal</label>
+        <label for="animal-input" id="add-label">Add an animal</label>
+        <br>
         <input type="text" id="animal-input">
         <br>
 
         <input id="add-animal" type="submit" value="Submit">
     </form>
-
+        </div>
+    </div>
     </div>
 
 

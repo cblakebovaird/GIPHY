@@ -1,0 +1,55 @@
+#buttons-view,
+    div,
+    form,
+    input
+    .animal-btn
+    /* #add-animal, */
+    #animal-form  {
+      margin: 10px;
+    }
+
+    .animal-btn {
+      margin: 10px;
+      background-color: red;
+      color: white;
+      border-radius: 5px;
+  }
+  #add-animal {
+    background-color: orangered;
+    color: white;
+    border-radius: 5px;
+}
+
+  #add-label{
+    font-weight: bolder;
+    background-color: orangered;
+    color: white;
+  }
+  #animal-form {
+    float: right;
+  }
+  #animal-input{
+    float: center;
+    font-weight: bolder;
+  }
+  .animal-output{
+    float: left;
+  }
+ 
+
+  #add-animal {
+    float: left;
+    margin-top: 10px;
+    
+
+  }
+  
+  body{
+    background-image: url(https://ak6.picdn.net/shutterstock/videos/33173296/thumb/1.jpg);
+    background-size: cover;
+  }
+
+  h1{
+    font-weight: bolder;
+    color: orange;
+  }

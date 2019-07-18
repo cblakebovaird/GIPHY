@@ -19,20 +19,36 @@ function displayAnimals(){
                 
                   console.log(response);
                   for (var i = 0; i < response.data.length; i++){
-                      var newDiv = $("<div>").addClass("animal-output");
-                      $(".container").append(newDiv);
+                      var gifDiv = $("<div>").addClass("animal-output");
+                      $(".container").append(gifDiv);
                 
 
                     var rating = response.data[i].rating.toUpperCase();
-                    var pOne = $("<p>").text("Rating: " + rating);
-                    newDiv.append(pOne);
 
-                    var imageUrl = response.data[i].images.fixed_height_small_still.url;
-                    var image = $("<img>").attr("src", imageUrl).addClass("gif");
-                    newDiv.append(image);
+                    var pOne = $("<p>").text("Rating: " + rating);
+                    gifDiv.append(pOne);
+
+                    var staticImage = response.data[i].images.fixed_height_small_still.url;
+
+                   var animateImage = response.data[i].images.fixed_height_small.url;
+
+                    var showImage = $("<img>").attr("src", staticImage);
+                    gifDiv.append(pOne);
+                    gifDiv.append(showImage);
+
+
 
                       console.log(response.data[i].rating);
+
+
+                
                   }
+
+                  showImage.attr("src", staticImage);
+                  showImage.addClass("gif");
+                  showImage.attr("data-state", "still");
+                  showImage.attr("data-still", staticImage);
+                  showImage.attr("data-animate", animateImage);
                   
                 
     });
@@ -86,18 +102,17 @@ $(".gif").on("click", function() {
 //    maybe try creating a new function with ajax call and calling it here when clicked
 
       var state = $(this).attr("data-state");
-      var dataAnimate = response.data[i].images.fixed_height_small.url;
-      var dataStill = response.data[i].images.fixed_height_small_still.url;
-      if ( state === "still") {
+      
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+      
 
-        $(this).attr("src", $(this), dataAnimate);
-        $(this).attr("data-state","animate");
-      }
-      else {
-        $(this).attr("src", $(this), dataStill);
-        $(this).attr("data-state","still");
-      }
-    
+      
     });
 
 displayButtons();
