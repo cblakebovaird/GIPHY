@@ -1,14 +1,11 @@
 
      // Creating a variable to hold the array 
 var animals = [
-    "Bear", "Dolphin", "Cat", "Dog", "Bird", "Whale", "Unicorn", "Swan", "Wolf", "Parrot"];
+    "Bear", "Dolphin", "Cat", "Dog", "Bird", "Whale", "Unicorn", "Swan", "Wolf", "Parrot", "Lemur", "Bat", "Elephant", "Panda", "Fox"];
 //  creating a function to re-render the HTML to display the appropriate content
 function displayAnimals(){
     var animal = $(this).attr("data-name");
     var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=rN0JfRZ29E6XebrinGCawK9xEnwbv1bx&q=" + animal + "&limit=10&offset=0&lang=en";
-
-    
-   
 
     // Creating an AJAX call for the specific animal being clicked
     $.ajax({
@@ -27,30 +24,25 @@ function displayAnimals(){
 
                     var pOne = $("<p>").text("Rating: " + rating);
                     gifDiv.append(pOne);
-
+                    // Retrieve Static Image from the API
                     var staticImage = response.data[i].images.fixed_height_small_still.url;
-
+                    // Retreive Animated Image from the API
                    var animateImage = response.data[i].images.fixed_height_small.url;
-
-                    var showImage = $("<img>").attr("src", staticImage);
+                    // Create a div to show the gifs
+                    var showImage = $("<img>");
+                    
                     gifDiv.append(pOne);
                     gifDiv.append(showImage);
 
-
-
-                      console.log(response.data[i].rating);
-
-
-                
-                  }
+                  console.log(response.data[i].rating);
 
                   showImage.attr("src", staticImage);
                   showImage.addClass("gif");
                   showImage.attr("data-state", "still");
                   showImage.attr("data-still", staticImage);
                   showImage.attr("data-animate", animateImage);
-                  
-                
+
+                   }
     });
 
 }
@@ -85,19 +77,19 @@ $("#add-animal").on("click", function(event) {
     // Clears the text field after creating the new button
     $("#animal-input").val("");
 
-
     // The renderButtons function is called, rendering the list of animal buttons
     displayButtons();
   });
 
   
-
-  
 // console.log(topics);
 $(document).on("click", ".animal-btn", displayAnimals);
 
+displayButtons();
+
+$(document).on("clicl", ".gif", pausePlayGifs);
 // when trying to get the pictures to animate, use booleans
-$(".gif").on("click", function() {
+ function pausePlayGifs() {
      
 //    maybe try creating a new function with ajax call and calling it here when clicked
 
@@ -111,10 +103,9 @@ $(".gif").on("click", function() {
         $(this).attr("data-state", "still");
       }
       
+    }
+  
 
-      
-    });
 
-displayButtons();
 
  

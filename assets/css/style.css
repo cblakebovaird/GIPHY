@@ -15,14 +15,14 @@
       border-radius: 5px;
   }
   #add-animal {
-    background-color: orangered;
+    background-color:blue;
     color: white;
     border-radius: 5px;
 }
 
   #add-label{
     font-weight: bolder;
-    background-color: orangered;
+    background-color: blue;
     color: white;
   }
   #animal-form {
@@ -52,4 +52,8 @@
   h1{
     font-weight: bolder;
     color: orange;
+  }
+  p{
+    color:black;
+    font-weight: bolder;
   }
