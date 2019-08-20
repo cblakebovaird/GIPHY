@@ -46,13 +46,13 @@
   }
   
   body{
-    background-image: url(http://www.yunlinplay.tw/gimg/f/95/951435_purple-geometric-wallpaper.jpg);
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Hr5HUzA7s7gjGfDnJtE_iRVAbaU6pKGN3Xzdk0jbrbrQW4vT");
     background-size: cover;
   }
 
   h1{
     font-weight: bolder;
-    color: purple;
+    color: white;
   }
   h3{
     color:white;
